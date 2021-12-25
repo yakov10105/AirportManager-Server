@@ -33,7 +33,8 @@ namespace Final_Project.Simulator.Services.SimulatorService
                 await Task.Delay(_rand.Next(4000, 6000));
                 var flight = await PostFlightToServer();
                 if (flight != null)
-                    handleFlightAction?.Invoke($"{flight.Direction} => from: {flight.From} to: {flight.To} ; Time: {flight.Time}"); 
+                    handleFlightAction?.Invoke($"{flight.Direction} => from: {flight.From} to: {flight.To} ; Time: {flight.Time}");
+            
             }
         }
 

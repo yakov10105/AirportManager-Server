@@ -33,7 +33,7 @@ namespace Final_Project.Server.BL.Services.HubNotifierService
                 if (flightEventArgs.StationTo != null)
                     to = _iMapper.Map<StationDTO>(flightEventArgs.StationTo);
 
-                _iHubContext.Clients.All.SendAsync("FlightChanged",JsonSerializer.Serialize(flight), JsonSerializer.Serialize(from), JsonSerializer.Serialize(to));
+                _iHubContext.Clients.All.SendAsync("FlightChanged",flight, from, to);
             }
             else
                 throw new ArgumentNullException();
@@ -45,7 +45,7 @@ namespace Final_Project.Server.BL.Services.HubNotifierService
             {
                 var dt = _iMapper.Map<FlightDTO>(flight);
            
-                _iHubContext.Clients.All.SendAsync("NewFlightAdded", JsonSerializer.Serialize(dt));
+                _iHubContext.Clients.All.SendAsync("NewFlightAdded", dt);
             }
         }
     }

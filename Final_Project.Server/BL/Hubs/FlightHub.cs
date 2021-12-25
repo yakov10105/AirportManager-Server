@@ -12,15 +12,20 @@ namespace Final_Project.Server.BL.Hubs
     public class FlightHub:Hub
     {
         //private readonly IMapper _iMapper;
-        //private readonly IAirportService _iAirportService;
+        private readonly IAirportService _iAirportService;
 
-        public FlightHub()
+        public FlightHub(IAirportService airportService)
         {
+            _iAirportService = airportService;
         }
 
         public async Task AddToGroup(string controlTowerName)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, $"{controlTowerName}");
+        }
+        public async Task<AirportDTO> GetAirportData()
+        {
+            return await Task.Run(() => _iAirportService.GetAirportData()); 
         }
     }
 }
